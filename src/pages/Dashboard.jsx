@@ -38,19 +38,19 @@ const Dashboard = () => {
     setMonitors((prev) => prev.filter((m) => m._id !== id));
   };
 
-  if (loading) return <div className="p-6">Loading...</div>;
+  if (loading) return <div className="p-4 sm:p-6">Loading...</div>;
 
   return (
-    <div className="p-6">
-      <div className="flex items-center justify-between mb-4">
+    <div className="p-4 sm:p-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
         <div>
-          <h1 className="text-2xl font-bold">Your Monitors</h1>
+          <h1 className="text-xl sm:text-2xl font-bold">Your Monitors</h1>
           <p className="text-sm text-gray-500">{monitors.length} / 5 used</p>
         </div>
         <button
           onClick={() => setIsAddModalOpen(true)}
           disabled={monitors.length >= 5}
-          className="bg-black text-white px-4 py-2 rounded-md text-sm disabled:opacity-40 disabled:cursor-not-allowed"
+          className="bg-black text-white px-4 py-2 rounded-md text-sm disabled:opacity-40 disabled:cursor-not-allowed w-full sm:w-auto"
         >
           + Add Monitor
         </button>
@@ -59,19 +59,19 @@ const Dashboard = () => {
       {error && <div className="text-red-600 text-sm mb-3">{error}</div>}
 
       {monitors.length === 0 ? (
-        <div className="text-center py-16 text-gray-400">
+        <div className="text-center py-12 sm:py-16 text-gray-400 text-sm sm:text-base px-4">
           No monitors yet. Click "Add Monitor" to start tracking a website.
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {monitors.map((m) => (
             <div
               key={m._id}
               onClick={() => setSelectedMonitorId(m._id)}
-              className="border rounded-lg p-4 shadow-sm cursor-pointer hover:shadow-md transition"
+              className="border rounded-lg p-4 shadow-sm cursor-pointer hover:shadow-md transition active:scale-[0.99]"
             >
-              <h2 className="font-semibold">{m.name}</h2>
-              <p className="text-sm text-gray-500 break-all">{m.url}</p>
+              <h2 className="font-semibold text-sm sm:text-base">{m.name}</h2>
+              <p className="text-xs sm:text-sm text-gray-500 break-all">{m.url}</p>
               <span
                 className={
                   "inline-block mt-2 px-2 py-1 text-xs rounded " +
