@@ -1,30 +1,30 @@
-import { Routes, Route, Link, Navigate } from 'react-router-dom'
+﻿import { Routes, Route, Link, Navigate } from 'react-router-dom'
 import { SignIn, SignUp, SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
 import ProtectedRoute from './components/ProtectedRoute'
 import Dashboard from './pages/Dashboard'
 
 const Navbar = () => {
   return (
-    <nav className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b">
-      <Link to="/" className="text-lg sm:text-xl font-bold shrink-0">DevPulse</Link>
-      <div className="flex items-center gap-2 sm:gap-4">
+    <nav className="sticky top-0 z-40 bg-white flex items-center justify-between px-4 sm:px-6 py-4 border-b">
+      <Link to="/" className="text-xl sm:text-2xl font-bold shrink-0">DevPulse</Link>
+      <div className="flex items-center gap-2 sm:gap-3">
         <SignedOut>
           <Link
             to="/sign-in"
-            className="text-xs sm:text-sm font-medium px-2.5 sm:px-3 py-1.5 rounded-md border"
+            className="text-sm font-medium px-4 py-2.5 rounded-md border min-h-[44px] flex items-center"
           >
             Sign In
           </Link>
           <Link
             to="/sign-up"
-            className="text-xs sm:text-sm font-medium bg-black text-white px-2.5 sm:px-3 py-1.5 rounded-md"
+            className="text-sm font-medium bg-black text-white px-4 py-2.5 rounded-md min-h-[44px] flex items-center"
           >
             Sign Up
           </Link>
         </SignedOut>
         <SignedIn>
-          <Link to="/dashboard" className="text-xs sm:text-sm font-medium hidden sm:inline">Dashboard</Link>
-          <UserButton afterSignOutUrl="/" />
+          <Link to="/dashboard" className="text-sm font-medium hidden sm:inline">Dashboard</Link>
+          <UserButton afterSignOutUrl="/" appearance={{ elements: { userButtonBox: "scale-110" } }} />
         </SignedIn>
       </div>
     </nav>
@@ -34,16 +34,16 @@ const Navbar = () => {
 const Landing = () => {
   return (
     <div className="flex flex-col items-center justify-center py-16 sm:py-24 text-center px-4">
-      <h1 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4">DevPulse</h1>
-      <p className="text-gray-500 mb-6 text-sm sm:text-base max-w-md">Monitor your websites and servers, in real time.</p>
+      <h1 className="text-4xl sm:text-5xl font-bold mb-4">DevPulse</h1>
+      <p className="text-gray-500 mb-8 text-base sm:text-lg max-w-md">Monitor your websites and servers, in real time.</p>
       <SignedOut>
-        <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto px-4 sm:px-0">
-          <Link to="/sign-up" className="bg-black text-white px-5 py-2.5 rounded-md text-sm sm:text-base">Get Started</Link>
-          <Link to="/sign-in" className="border px-5 py-2.5 rounded-md text-sm sm:text-base">Sign In</Link>
+        <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto max-w-xs sm:max-w-none px-4 sm:px-0">
+          <Link to="/sign-up" className="bg-black text-white px-6 py-3.5 rounded-md text-base font-medium min-h-[48px] flex items-center justify-center">Get Started</Link>
+          <Link to="/sign-in" className="border px-6 py-3.5 rounded-md text-base font-medium min-h-[48px] flex items-center justify-center">Sign In</Link>
         </div>
       </SignedOut>
       <SignedIn>
-        <Link to="/dashboard" className="bg-black text-white px-5 py-2.5 rounded-md text-sm sm:text-base">Go to Dashboard</Link>
+        <Link to="/dashboard" className="bg-black text-white px-6 py-3.5 rounded-md text-base font-medium min-h-[48px] flex items-center justify-center">Go to Dashboard</Link>
       </SignedIn>
     </div>
   )
@@ -52,7 +52,9 @@ const Landing = () => {
 const clerkAppearance = {
   elements: {
     rootBox: "w-full flex justify-center",
-    card: "w-full max-w-[400px] shadow-none border rounded-lg mx-2",
+    card: "w-full max-w-[420px] shadow-none border rounded-lg mx-2",
+    formButtonPrimary: "text-base py-3",
+    formFieldInput: "text-base py-3",
   },
 }
 
